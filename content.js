@@ -1,71 +1,51 @@
 (async () => {
-  // Import proxies list
   const { alienHives } = await import(chrome.runtime.getURL("listOfProxies.js"));
   console.log(alienHives);
 
-  // Function to handle the logic when the unitSelection is clicked
-  const handleUnitSelectionClick = (event) => {
-    console.log("Unit selection clicked!", event);
+  console.log("Script injected");
 
-    const text = event.target.textContent.trim();
-    console.log("Clicked content:", text);
+  document.body.addEventListener("click", (event) => {
+    console.log("Body click event fired");
 
-    // Handle logic for "Alien Hives" or other selections
-    if (text.includes("Alien Hives")) {
-      console.log("Alien Hives selected!");
-      // Add any additional logic specific to Alien Hives if needed
-    } else {
-      console.log("Different selection made!");
+    // Check if a new "Hive Lord [1]" element has appeared
+    const h5Elements = document.querySelectorAll("h5.MuiTypography-h5.css-19gldcy");
+    h5Elements.forEach((element, index) => {
+      if (index > 0) { // Skip the first h5 element (index 0)
+        console.log("Hive Lord element found (not the first one)!");
+
+        // Cleanup any existing icons and text boxes
+        cleanupElement(element); 
+
+        handleNewElement(element);
+      }
+    });
+  });
+
+  // Function to cleanup existing icons and text boxes
+  const cleanupElement = (element) => {
+    const existingIcon = element.parentElement.querySelector("div");
+    if (existingIcon) {
+      existingIcon.remove();
+    }
+    const existingBox = element.parentElement.querySelector(".custom-text-box");
+    if (existingBox) {
+      existingBox.remove();
     }
   };
 
-  // Observe DOM changes to identify when target elements are added
-  const observeForElement = (targetSelector) => {
-    const processedElements = new Set();
-
-    return new Promise((resolve, reject) => {
-      const observer = new MutationObserver(() => {
-        const targetElements = document.querySelectorAll(targetSelector);
-        targetElements.forEach((element) => {
-          if (!processedElements.has(element)) {
-            processedElements.add(element);
-            handleNewElement(element); // Handle newly added elements
-          }
-        });
-      });
-
-      observer.observe(document.body, { childList: true, subtree: true });
-
-      // Timeout to prevent infinite waiting
-      setTimeout(() => {
-        observer.disconnect();
-        reject(new Error("Element not found within the timeout period"));
-      }, timeout);
-    });
-  };
-
-  // Function to dynamically create content in the new element
+  // Function to handle the h5 element (modified)
   const handleNewElement = (element) => {
-    console.log("New element found:", element);
+    console.log("Element found:", element);
 
     const text = element.textContent.trim();
-    let boxContent = "Default text"; 
+    let boxContent = "Default text";
 
-    if (text.includes("Alien Hives")) {
-      // Build the list dynamically for "Alien Hives"
-      const listItems = alienHives.map(
-        (entry) => `<li>${Object.keys(entry)[0]}: ${entry[Object.keys(entry)[0]].join(" / ")}</li>`
-      ).join("");
-      boxContent = `<ul>${listItems}</ul>`;
-    } else {
-      // Handle other alienHives cases or different selections
-      alienHives.forEach((entry) => {
-        const key = Object.keys(entry)[0];
-        if (text.includes(key)) {
-          boxContent = `<ul><li>${entry[key].join(" / ")}</li></ul>`;
-        }
-      });
-    }
+    alienHives.forEach((entry) => {
+      const key = Object.keys(entry)[0];
+      if (text.includes(key)) {
+        boxContent = `<ul><li>${entry[key].join(" / ")}</li></ul>`;
+      }
+    });
 
     // Create the icon
     const icon = document.createElement("div");
@@ -74,8 +54,10 @@
     icon.style.marginLeft = "10px";
     icon.style.display = "inline-block";
 
-    // Add click event to show a text box with the content
+    // Add click event to show a text box
     icon.addEventListener("click", () => {
+      event.stopPropagation(); 
+
       const existingBox = document.querySelector(".custom-text-box");
       if (existingBox) {
         existingBox.remove(); // Remove if already displayed
@@ -85,34 +67,15 @@
       const textBox = document.createElement("div");
       textBox.className = "custom-text-box";
       textBox.innerHTML = `
-        <div style="background: #000; border: 1px solid #000; padding: 10px; margin-top: 10px; position: relative; z-index: 999;">
-          <p>${boxContent}</p>
-        </div>
-      `;
+            <div style="background: #000; border: 1px solid #000; padding: 10px; margin-top: 10px; position: relative; z-index: 999;">
+              <p>${boxContent}</p>
+            </div>
+          `;
       element.parentElement.appendChild(textBox);
     });
 
     // Add the icon next to the target element
     element.parentElement.appendChild(icon);
   };
-
-  // Set up the listener for unitSelection
-  document.addEventListener("DOMContentLoaded", () => {
-    const unitSelection = document.getElementById("unitSelection");
-
-    if (unitSelection) {
-      unitSelection.addEventListener("click", handleUnitSelectionClick);
-    } else {
-      console.warn("Element with id 'unitSelection' not found!");
-    }
-  });
-
-  // Start observing for the target element
-  const targetSelector = "h5.MuiTypography-h5.css-19gldcy"; // Your specific target selector
-  observeForElement(targetSelector)
-    .then(() => {
-      console.log("Initial observation complete!");
-    })
-    .catch((err) => console.warn(err.message));
 
 })();
