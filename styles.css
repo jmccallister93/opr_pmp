@@ -1,0 +1,6 @@
+.custom-text-box {
+    position: relative;
+    width: 200px;
+    z-index: 1000;
+  }
+  

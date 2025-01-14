@@ -1,0 +1,20 @@
+{
+    "name": "OPR Model Proxy",
+    "description": "Find proxy models for OnePageRules",
+    "permissions": ["scripting"],
+    "version": "1.0",
+    "manifest_version": 3,
+    "host_permissions": [
+        "https://army-forge.onepagerules.com/*"
+      ],
+      "content_scripts": [
+        {
+          "matches": ["https://army-forge.onepagerules.com/*"],
+          "js": ["content.js"],
+          "css": ["styles.css"]
+        }
+      ],
+      "action": {
+        "default_title": "OPR Model Proxy"
+      }
+  }
