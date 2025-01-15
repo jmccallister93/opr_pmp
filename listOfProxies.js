@@ -181,6 +181,177 @@ export const proxyModels = [
     {
         "Heavy Gunship": ["Stormraven"]
     },
+//Blood Battle brother
+{
+    "Blood Master Destroyer": ["Terminator Captain", "Librarian in Terminator Armor", "Terminator Chaplain"]
+},
+{
+    "Veteran Blood Master Destroyer": ["Terminator Captain", "Librarian in Terminator Armor", "Terminator Chaplain"]
+},
+{
+    "Blood Master Brother": [
+      "Sanguinary Priest",
+    ]
+  },
+  {
+    "Blood Elite Pathfinder": ["Sergeant Telion"]
+},
+  {
+    "Blood Death Brothers": [
+      "Death Company"
+    ]
+  },
+  {
+    "Blood Guard Brothers": [
+      "Sanguinary Guard"
+    ]
+  },
+  {
+    "Blood Attack Walker": [
+      "Dreadnought",
+      "Librarian Dreadnought",
+      "Death Company Dreadnought"
+    ]
+  },
+//Dark Battle Brothers
+{
+    "Dark Master Brother w/ Interrogator upgrade": [
+      "Interrogator-Chaplain"
+    ]
+  },
+  {
+    "Dark Destroyers": [
+      "Deathwing Terminators",
+      "Deathwing Knights"
+    ]
+  },
+  {
+    "Dark Brother Bikers": [
+      "Ravenwing Bike Squadron",
+      "Ravenwing Black Knights"
+    ]
+  },
+  {
+    "Dark Attack Speeder": [
+      "Land Speeder Vengeance"
+    ]
+  },
+  {
+    "Dark Shroud Speeder": [
+      "Ravenwing Darkshroud"
+    ]
+  },
+  {
+    "Dark Light Gunship": [
+      "Nephilim Jetfighter",
+      "Ravenwing Dark Talon"
+    ]
+  },
+  {
+    "Dark Heavy Gunship": [
+      "Nephilim Jetfighter",
+      "Ravenwing Dark Talon"
+    ]
+  },
+//Knight Battle Brothers
+{
+    "Knight Champion": [
+      "Grey Knights Brother Captain",
+      "Castellan Crowe",
+      "Lord Kaldor Draigo",
+      "Grand Master Voldus",
+
+    ]
+  },
+  {
+    "Knight Master Brother": [
+      "Grey Knights Brother Captain",
+      "Castellan Crowe",
+      "Lord Kaldor Draigo",
+      "Grand Master Voldus",
+ 
+    ]
+  },
+  {
+    "Knight Brothers": [
+      "Purifier Squad",
+      "Strike Squad",
+      "Interceptor Squad",
+
+    ]
+  },
+  {
+    "Knight Purgation Brothers": [
+      "Purgation Squad",
+     
+    ]
+  },
+  {
+    "Knight Destroyers": [
+      "Terminator Squad",
+      "Paladins",
+     
+    ]
+  },
+  {
+    "Knight Nemesis Walker": [
+      "Nemesis Dreadknight",
+     
+    ]
+  },
+//Watch Battle Brothers
+{
+    "Watch Captain Brother w/ Spear": [
+      "Watch Master"
+    ]
+  },
+  {
+    "Watch Brothers": [
+      "Deathwatch Veterans"
+    ]
+  },
+  {
+    "Watch Vanguard": [
+      "Vanguard Veterans"
+    ]
+  },
+  {
+    "Watch Deathstar Gunship": [
+      "Corvus Blackstar"
+    ]
+  },
+//Wolf Battle Brothers
+{
+    "Wolf Master Brother w/ Great Wolf Mount": [
+      "Wolf Lord on Thunderwolf",
+      "Canis Wolfborn"
+    ]
+  },
+  {
+    "Wolf Rookies": [
+      "Blood Claws"
+    ]
+  },
+  {
+    "Werewolf Brothers": [
+      "Wulfen"
+    ]
+  },
+  {
+    "Hunting Wolves": [
+      "Fenrisian Wolves"
+    ]
+  },
+  {
+    "Wolf Riders": [
+      "Thunderwolf Cavalry"
+    ]
+  },
+  {
+    "Wolf Attack Walker w/ Combat Shield and Axe": [
+      "Space Wolves Venerable Dreadnought"
+    ]
+  },
     //Blessed Sisters
     {
         "Exo-Suit High Sister": ["Morvenn Vahl"]
